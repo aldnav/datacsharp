@@ -14,8 +14,8 @@ x* AddFirst
 x* AddLast
 x* Insert
 x* Clear
-* Contains
-* Find
+x* Contains
+x* Find
 * FindLast
 * Remove
 * RemoveFirst
@@ -145,19 +145,21 @@ namespace Containers
             }
         }
 
+        public int Find(T item) => IndexOf(item);
+
         public int IndexOf(Node<T> refNode)
         {
             int index = 0;
-            Node<T> currentItem = head;
-            while (currentItem != null)
+            current = head;
+            while (current != null)
             {
-                if (((currentItem.item != null) && EqualityComparer<T>.Default.Equals(refNode.item, currentItem.item)) ||
-                    ((currentItem.item == null) && (refNode == null)))
+                if (((current.item != null) && EqualityComparer<T>.Default.Equals(refNode.item, current.item)) ||
+                    ((current.item == null) && (refNode == null)))
                 {
                     return index;
                 }
                 index++;
-                currentItem = currentItem.Next;
+                current = current.Next;
             }
             return -1;
         }
@@ -165,16 +167,16 @@ namespace Containers
         public int IndexOf(T item)
         {
             int index = 0;
-            Node<T> currentItem = head;
-            while (currentItem != null)
+            current = head;
+            while (current != null)
             {
-                if (((currentItem.item != null) && EqualityComparer<T>.Default.Equals(item, currentItem.item)) ||
-                    ((currentItem.item == null) && (item == null)))
+                if (((current.item != null) && EqualityComparer<T>.Default.Equals(item, current.item)) ||
+                    ((current.item == null) && (item == null)))
                 {
                     return index;
                 }
                 index++;
-                currentItem = currentItem.Next;
+                current = current.Next;
             }
             return -1;
         }
@@ -224,11 +226,11 @@ namespace Containers
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            Node<T> currentItem = head;
-            while (currentItem != null)
+            current = head;
+            while (current != null)
             {   
-                builder.Append(currentItem.item).Append(",");
-                currentItem = currentItem.Next;
+                builder.Append(current.item).Append(",");
+                current = current.Next;
             }
             try
             {

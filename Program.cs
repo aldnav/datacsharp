@@ -17,6 +17,7 @@ namespace DataCSharp
             arr.AddFirst(6);
             arr.Insert(4, 7);
             // arr.Clear();
+            // arr.Remove(7);
 
             System.Console.WriteLine(arr.Count);
             System.Console.WriteLine(arr);
