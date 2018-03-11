@@ -181,6 +181,46 @@ namespace Containers
 
         public bool Contains(T item) => IndexOf(item) >= 0;
 
+        public void Remove(T item)
+        {
+            int currentIndex = 0;
+            current = head;
+            Node<T> prevItem = null;
+            while (current != null)
+            {
+                if (((current.item != null) && EqualityComparer<T>.Default.Equals(item, current.item)) ||
+                    ((current.item == null) && (item == null)))
+                {
+                    break;
+                }
+                prevItem = current;
+                current = current.Next;
+                currentIndex++;
+            }
+            if (current == null) { return; }
+            
+            count--;
+            if (count == 0)
+            {
+                head = null;
+            }
+            else if (prevItem == null)
+            {
+                head = current.Next;
+                head.Prev = null;
+            }
+            else if (current == tail)
+            {
+                current.Prev.Next = null;
+                this.tail = current.Prev;
+            }
+            else
+            {
+                current.Prev.Next = current.Next;
+                current.Next.Prev = current.Prev;
+            }
+        }
+
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
