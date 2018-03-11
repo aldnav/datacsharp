@@ -1,5 +1,6 @@
 
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 /**
@@ -16,7 +17,8 @@ x* Insert
 x* Clear
 x* Contains
 x* Find
-* FindLast
+x* FindLast
+x* LastIndexOf
 x* Remove
 x* RemoveFirst
 x* RemoveLast
@@ -29,10 +31,12 @@ namespace Containers
         Node<T> prev;
         Node<T> next;
         public T item;
+        private string id;
 
         public Node(T item)
         {
             this.item = item;
+            id = Guid.NewGuid().ToString("N");
         }
 
         public Node(T item, Node<T> prevNode)
@@ -40,10 +44,17 @@ namespace Containers
             this.item = item;
             prev = prevNode;
             prev.next = this;
+            id = Guid.NewGuid().ToString("N");
         }
 
         public Node<T> Next { get => next; set => next = value; }
         public Node<T> Prev { get => prev; set => prev = value; }
+        public string ID { get => id; }
+
+        public override string ToString()
+        {
+            return item.ToString();
+        }
     }
 
     public class LinkedList<T>
@@ -145,7 +156,56 @@ namespace Containers
             }
         }
 
-        public int Find(T item) => IndexOf(item);
+        public Node<T> Find(T item)
+        {
+            int index = 0;
+            current = head;
+            while (current != null)
+            {
+                if (((current.item != null) && EqualityComparer<T>.Default.Equals(item, current.item)) ||
+                    ((current.item == null) && (item == null)))
+                {
+                    return current;
+                }
+                index++;
+                current = current.Next;
+            }
+            return null;
+        }
+
+        public Node<T> FindLast(T item)
+        {
+            int index = count - 1;
+            current = tail;
+            while (current != null)
+            {
+                if (((current.item != null) && EqualityComparer<T>.Default.Equals(item, current.item)) ||
+                    ((current.item == null) && (item == null)))
+                {
+                    return current;
+                }
+                index--;
+                current = current.Prev;
+            }
+            return null;
+        }
+
+        public int LastIndexOf(T item)
+        {
+            int index = count - 1;
+            current = tail;
+            while (current != null)
+            {
+                if (((current.item != null) && EqualityComparer<T>.Default.Equals(item, current.item)) ||
+                    ((current.item == null) && (item == null)))
+                {
+                    return index;
+                }
+                index--;
+                current = current.Prev;
+            }
+            return -1;
+        }
 
         public int IndexOf(Node<T> refNode)
         {

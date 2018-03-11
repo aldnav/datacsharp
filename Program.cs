@@ -30,6 +30,13 @@ namespace DataCSharp
             arr.RemoveLast();
             System.Console.WriteLine(arr);
             System.Console.WriteLine(arr.Count);
+
+            System.Console.WriteLine("Find First 4: " + arr.IndexOf(4));
+            System.Console.WriteLine("Find Last 4: " + arr.LastIndexOf(4));
+            arr.Insert(4, 4);
+            System.Console.WriteLine(arr);
+            System.Console.WriteLine("Find First 4: " + arr.IndexOf(4));
+            System.Console.WriteLine("Find Last 4: " + arr.LastIndexOf(4));
         }
     }
 }
