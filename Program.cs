@@ -17,11 +17,19 @@ namespace DataCSharp
             arr.AddFirst(6);
             arr.Insert(4, 7);
             // arr.Clear();
-            // arr.Remove(7);
 
             System.Console.WriteLine(arr.Count);
             System.Console.WriteLine(arr);
             System.Console.WriteLine(arr.Contains(7));
+
+            // arr.Remove(7);
+            arr.RemoveFirst();
+            System.Console.WriteLine(arr);
+            System.Console.WriteLine(arr.Count);
+
+            arr.RemoveLast();
+            System.Console.WriteLine(arr);
+            System.Console.WriteLine(arr.Count);
         }
     }
 }

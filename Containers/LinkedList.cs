@@ -17,10 +17,10 @@ x* Clear
 x* Contains
 x* Find
 * FindLast
-* Remove
-* RemoveFirst
-* RemoveLast
-* ToString
+x* Remove
+x* RemoveFirst
+x* RemoveLast
+x* ToString
 */
 namespace Containers
 {
@@ -185,7 +185,6 @@ namespace Containers
 
         public void Remove(T item)
         {
-            int currentIndex = 0;
             current = head;
             Node<T> prevItem = null;
             while (current != null)
@@ -197,7 +196,6 @@ namespace Containers
                 }
                 prevItem = current;
                 current = current.Next;
-                currentIndex++;
             }
             if (current == null) { return; }
             
@@ -221,6 +219,16 @@ namespace Containers
                 current.Prev.Next = current.Next;
                 current.Next.Prev = current.Prev;
             }
+        }
+
+        public void RemoveFirst() => Remove(head.item);
+
+        public void RemoveLast() {
+            current = tail;
+            if (current == null) { return; }
+            count--;
+            current.Prev.Next = null;
+            tail = current.Prev;
         }
 
         public override string ToString()
