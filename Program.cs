@@ -7,28 +7,29 @@ namespace DataCSharp
     {
         static void Main(string[] args)
         {
-            Stack<int> myStack = new Stack<int>();
-            
-            myStack.Push(5);
-            myStack.Push(10);
-            myStack.Push(15);
-            System.Console.WriteLine("Stack: " + myStack);
+            Queue<int> myQ = new Queue<int>();
 
-            System.Console.WriteLine("Peek: " + myStack.Peek());
-            System.Console.WriteLine("Pop: " + myStack.Pop());
-            System.Console.WriteLine("Stack: " + myStack);
-            System.Console.WriteLine("Pop: " + myStack.Pop());
-            System.Console.WriteLine("Pop: " + myStack.Pop());
-            try
-            {
-                System.Console.WriteLine("Pop: " + myStack.Pop());
-            }
-            catch (System.InvalidOperationException e)
-            {
-                
-                System.Console.WriteLine(e);
-            }
-            
+            myQ.Enqueue(5);
+            myQ.Enqueue(6);
+            myQ.Enqueue(8);
+            System.Console.WriteLine("Queue: " + myQ);
+
+            System.Console.WriteLine("Peek: " + myQ.Peek());
+            System.Console.WriteLine("Deque: " + myQ.Dequeue());
+            System.Console.WriteLine("Queue: " + myQ);
+
+            System.Console.WriteLine("Deque: " + myQ.Dequeue());
+            System.Console.WriteLine("Queue: " + myQ);
+
+            myQ.Enqueue(9);
+            System.Console.WriteLine("Queue: " + myQ);
+
+            System.Console.WriteLine("Deque: " + myQ.Dequeue());
+            System.Console.WriteLine("Queue: " + myQ);
+
+            myQ.Dequeue();
+            System.Console.WriteLine("QSize: " + myQ.Count);
+            System.Console.WriteLine("Queue: " + myQ);
         }
     }
 }
